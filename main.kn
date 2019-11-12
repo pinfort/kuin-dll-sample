@@ -1,0 +1,51 @@
+func[test_dll.dll, echoChar]echoChar(x: char): char
+end func
+
+func[test_dll.dll, echoStr]echoStr(x: []char): []char
+end func
+
+func[test_dll.dll, echoInt]echoInt(x: int): int
+end func
+
+func[test_dll.dll, echoFloat]echoFloat(x: float): float
+end func
+
+func[test_dll.dll, echoBool]echoBool(x: bool): bool
+end func
+
+func[test_dll.dll, echoBit8]echoBit8(x: bit8): bit8
+end func
+
+func[test_dll.dll, echoBit16]echoBit16(x: bit16): bit16
+end func
+
+func[test_dll.dll, echoBit32]echoBit32(x: bit32): bit32
+end func
+
+func[test_dll.dll, echoBit64]echoBit64(x: bit64): bit64
+end func
+
+func[test_dll.dll, echoEnum]echoEnum(x: @Test): @Test
+end func
+
+enum Test
+	A :: 1
+	B
+	C
+end enum
+
+func main()
+	do cui@print(@echoChar('a').toStr() ~ "\n")
+	do cui@print(@echoStr("a") ~ "\n")
+	do cui@print(@echoInt(1).toStr() ~ "\n")
+	do cui@print(@echoFloat(1.0).toStr() ~ "\n")
+	do cui@print(@echoBool(true).toStr() ~ "\n")
+	do cui@print(@echoBit8(1b8).toStr() ~ "\n")
+	do cui@print(@echoBit16(1b16).toStr() ~ "\n")
+	do cui@print(@echoBit32(1b32).toStr() ~ "\n")
+	do cui@print(@echoBit64(1b64).toStr() ~ "\n")
+	
+	var test: @Test :: %A
+	var result: bool :: (@echoEnum(test) = test)
+	do cui@print(result.toStr() ~ "\n")
+end func
