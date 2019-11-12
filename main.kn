@@ -48,4 +48,18 @@ func main()
 	var test: @Test :: %A
 	var result: bool :: (@echoEnum(test) = test)
 	do cui@print(result.toStr() ~ "\n")
+
+	; 出力
+	{
+		a
+		a
+		1
+		1
+		true
+		0x01
+		0x0001
+		0x00000001
+		0x0000000000000001
+		true
+	}
 end func
