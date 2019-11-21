@@ -58,7 +58,7 @@ func main()
 	
 	var testClass: @MyClass :: #@MyClass
 	do testClass.data :: 2
-	do cui@print(testClass.getInt().toStr())
+	do cui@print(testClass.getInt().toStr() ~ "\n")
 	
 	
 	; 出力
@@ -73,5 +73,6 @@ func main()
 		0x00000001
 		0x0000000000000001
 		true
+		0x0000000000000002
 	}
 end func
