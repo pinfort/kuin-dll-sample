@@ -62,3 +62,21 @@ extern "C" _declspec(dllexport) int echoEnum(int x)
 {
 	return x;
 }
+
+typedef struct SClass
+{
+	unsigned long long RefCnt;
+	void* ClassTable;
+} SClass;
+
+typedef struct MyClass
+{
+	SClass Class;
+	int data;
+} MyClass;
+
+extern "C" _declspec(dllexport) int _getInt(SClass* me_)
+{
+	MyClass* var = reinterpret_cast<MyClass*>(me_);
+	return var->data;
+}

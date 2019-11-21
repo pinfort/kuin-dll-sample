@@ -34,6 +34,13 @@ enum Test
 	C
 end enum
 
+class MyClass()
+	+func[test_dll.dll, _getInt]getInt(): bit64
+	end func
+
+	+var data: int
+end class
+
 func main()
 	do cui@print(@echoChar('a').toStr() ~ "\n")
 	do cui@print(@echoStr("a") ~ "\n")
@@ -48,7 +55,12 @@ func main()
 	var test: @Test :: %A
 	var result: bool :: (@echoEnum(test) = test)
 	do cui@print(result.toStr() ~ "\n")
-
+	
+	var testClass: @MyClass :: #@MyClass
+	do testClass.data :: 2
+	do cui@print(testClass.getInt().toStr())
+	
+	
 	; 出力
 	{
 		a
