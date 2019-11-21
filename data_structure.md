@@ -128,3 +128,24 @@ typedef enum ETypeId
 
 ### 要素のデータ構造
 その要素の型の構造
+
+## Classに関する詳細調査
+KuinにクラスとCppにstructを定義。structはプロパティとして SClass Class; を必ず持つ
+プロパティは同じ名前だが型が異なる
+メソッドは、Cppではクラスの中になく、別途関数として定義、エクスポートしてKuinで読み込む
+クラスを受け渡しするときは型をSClass*にする
+SClass*はcommon.hにあって
+
+```
+typedef struct SClass
+{
+	U64 RefCnt;
+	void* ClassTable;
+} SClass;
+```
+
+Cpp側の関数の第一引数は常に SClass* me_ で、これはpythonの self 的なやつ
+
+SClass*をreinterpret_castで任意の型に変換して利用する
+
+現在の状態の内容を加工して新しい自分を返す必要があるときは、Kuin側の第一引数で me2: @Node のようにインスタンスをわたし、Cpp側の第二引数で SClass* me2 で受けて、me_の内容をme2にコピーしつつ加工する。そしてme2をreturn することでKuin側で func (): @Node のように返り値で受け取れる。ただし、このようにKuinの引数で新しいインスタンスを渡すには 関数のDLL指定で [test.dll, myfuncname, _make_instance] のように三つ目に _make_instanceを指定する必要がある。
