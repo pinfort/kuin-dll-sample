@@ -131,7 +131,7 @@ typedef enum ETypeId
 
 ## Classに関する詳細調査
 KuinにクラスとCppにstructを定義。structはプロパティとして SClass Class; を必ず持つ
-プロパティは同じ名前だが型が異なる
+プロパティは同じ名前だが型が異なる（Kuinの型はintが多いが一部違うものもある。整数型のどれか？）
 メソッドは、Cppではクラスの中になく、別途関数として定義、エクスポートしてKuinで読み込む
 クラスを受け渡しするときは型をSClass*にする
 SClass*はcommon.hにあって
