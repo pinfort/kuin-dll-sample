@@ -37,8 +37,16 @@ end enum
 class MyClass()
 	+func[test_dll.dll, _getInt]getInt(): bit64
 	end func
-
+	
+	+func[test_dll.dll, _getStr]getStr(): []char
+	end func
+	
+	+func[test_dll.dll, _getStrList]getStrList(): [][]char
+	end func
+	
 	+var data: int
+	+var str: []char
+	+var strList: [][]char
 end class
 
 func main()
@@ -60,6 +68,11 @@ func main()
 	do testClass.data :: 2
 	do cui@print(testClass.getInt().toStr() ~ "\n")
 	
+	do testClass.str :: "my str"
+	do cui@print(testClass.getStr() ~ "\n")
+	
+	do testClass.strList :: ["strList", "my list"]
+	do cui@print(testClass.getStrList()[0] ~ "\n")
 	
 	; 出力
 	{
@@ -74,5 +87,7 @@ func main()
 		0x0000000000000001
 		true
 		0x0000000000000002
+		my str
+		strList
 	}
 end func

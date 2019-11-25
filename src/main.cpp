@@ -73,10 +73,24 @@ typedef struct MyClass
 {
 	SClass Class;
 	int data;
+	unsigned char* str;
+	unsigned char** strList;
 } MyClass;
 
 extern "C" _declspec(dllexport) int _getInt(SClass* me_)
 {
 	MyClass* var = reinterpret_cast<MyClass*>(me_);
 	return var->data;
+}
+
+extern "C" _declspec(dllexport) unsigned char* _getStr(SClass* me_)
+{
+	MyClass* var = reinterpret_cast<MyClass*>(me_);
+	return var->str;
+}
+
+extern "C" _declspec(dllexport) unsigned char** _getStrList(SClass * me_)
+{
+	MyClass* var = reinterpret_cast<MyClass*>(me_);
+	return var->strList;
 }
